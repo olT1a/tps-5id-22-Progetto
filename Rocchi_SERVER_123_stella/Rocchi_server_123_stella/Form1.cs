@@ -16,5 +16,10 @@ namespace Rocchi_server_123_stella
         {
             InitializeComponent();
         }
+
+        private void btn_fermi_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
