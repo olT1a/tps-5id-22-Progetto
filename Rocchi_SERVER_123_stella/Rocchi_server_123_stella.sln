@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rocchi_server_123_stella", "Rocchi_server_123_stella\Rocchi_server_123_stella.csproj", "{58AEE4E7-90CC-4639-9242-C7AC5A3E0314}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58AEE4E7-90CC-4639-9242-C7AC5A3E0314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58AEE4E7-90CC-4639-9242-C7AC5A3E0314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58AEE4E7-90CC-4639-9242-C7AC5A3E0314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58AEE4E7-90CC-4639-9242-C7AC5A3E0314}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5727F9A-C601-4036-83EC-636C56B225B5}
+	EndGlobalSection
+EndGlobal
