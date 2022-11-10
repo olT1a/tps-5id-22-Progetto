@@ -16,5 +16,19 @@ namespace Rocchi_client_123_stella
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            btn_invia.Visible = false;
+            lbl_nick.Visible = false;
+            txt_nick.Visible = false;
+        }
+
+        private void btn_connetti_Click(object sender, EventArgs e)
+        {
+            btn_invia.Visible = true;
+            lbl_nick.Visible = true;
+            txt_nick.Visible = true;
+        }
     }
 }
