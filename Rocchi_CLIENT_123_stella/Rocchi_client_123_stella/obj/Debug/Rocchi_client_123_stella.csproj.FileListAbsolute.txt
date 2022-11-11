@@ -8,3 +8,13 @@ C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_clien
 C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\obj\Debug\Rocchi_client_123_stella.csproj.CoreCompileInputs.cache
 C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\obj\Debug\Rocchi_client_123_stella.exe
 C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\obj\Debug\Rocchi_client_123_stella.pdb
+C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\bin\Debug\Rocchi_client_123_stella.exe.config
+C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\bin\Debug\Rocchi_client_123_stella.exe
+C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\bin\Debug\Rocchi_client_123_stella.pdb
+C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\obj\Debug\Rocchi_client_123_stella.csprojAssemblyReference.cache
+C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\obj\Debug\Rocchi_client_123_stella.Form1.resources
+C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\obj\Debug\Rocchi_client_123_stella.Properties.Resources.resources
+C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\obj\Debug\Rocchi_client_123_stella.csproj.GenerateResource.cache
+C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\obj\Debug\Rocchi_client_123_stella.csproj.CoreCompileInputs.cache
+C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\obj\Debug\Rocchi_client_123_stella.exe
+C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_CLIENT_123_stella\Rocchi_client_123_stella\obj\Debug\Rocchi_client_123_stella.pdb
