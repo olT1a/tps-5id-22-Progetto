@@ -19,7 +19,7 @@ namespace Rocchi_server_123_stella
 
         private void btn_fermi_Click(object sender, EventArgs e)
         {
-          // pic_arbitro.Image = Image.FromFile(@".\\nasa.jpg");
+            pic_arbitro.Image = Image.FromFile(@".\\arbitro2.jpg");
 
             tmr_controllo.Start();
         }
@@ -32,7 +32,7 @@ namespace Rocchi_server_123_stella
 
         private void tmr_controllo_Tick(object sender, EventArgs e)
         {
-            //pic_arbitro.Image = Image.FromFile(@".\\arbitro1.png");
+            pic_arbitro.Image = Image.FromFile(@".\\arbitro1.jpg");
             tmr_controllo.Stop();
         }
 

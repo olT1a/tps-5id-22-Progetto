@@ -36,20 +36,20 @@ namespace Rocchi_server_123_stella
             this.lbl_tipo = new System.Windows.Forms.Label();
             this.btn_fermi = new System.Windows.Forms.Button();
             this.panel_campo = new System.Windows.Forms.Panel();
+            this.lbl_g2 = new System.Windows.Forms.Label();
+            this.lbl_g1 = new System.Windows.Forms.Label();
+            this.lbl_capo = new System.Windows.Forms.Label();
+            this.pic_g2 = new System.Windows.Forms.PictureBox();
+            this.pic_g1 = new System.Windows.Forms.PictureBox();
             this.pic_arbitro = new System.Windows.Forms.PictureBox();
             this.tmr_controllo = new System.Windows.Forms.Timer(this.components);
             this.btn_attiva = new System.Windows.Forms.Button();
-            this.pic_g1 = new System.Windows.Forms.PictureBox();
-            this.pic_g2 = new System.Windows.Forms.PictureBox();
             this.tmr_durataMovimento = new System.Windows.Forms.Timer(this.components);
-            this.lbl_capo = new System.Windows.Forms.Label();
-            this.lbl_g1 = new System.Windows.Forms.Label();
-            this.lbl_g2 = new System.Windows.Forms.Label();
             this.panel_titolo.SuspendLayout();
             this.panel_campo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_arbitro)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_g1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_g2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_g1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_arbitro)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_titolo
@@ -111,12 +111,58 @@ namespace Rocchi_server_123_stella
             this.panel_campo.Size = new System.Drawing.Size(1370, 500);
             this.panel_campo.TabIndex = 2;
             // 
+            // lbl_g2
+            // 
+            this.lbl_g2.AutoSize = true;
+            this.lbl_g2.Location = new System.Drawing.Point(34, 411);
+            this.lbl_g2.Name = "lbl_g2";
+            this.lbl_g2.Size = new System.Drawing.Size(21, 13);
+            this.lbl_g2.TabIndex = 5;
+            this.lbl_g2.Text = "G2";
+            // 
+            // lbl_g1
+            // 
+            this.lbl_g1.AutoSize = true;
+            this.lbl_g1.Location = new System.Drawing.Point(34, 140);
+            this.lbl_g1.Name = "lbl_g1";
+            this.lbl_g1.Size = new System.Drawing.Size(21, 13);
+            this.lbl_g1.TabIndex = 4;
+            this.lbl_g1.Text = "G1";
+            // 
+            // lbl_capo
+            // 
+            this.lbl_capo.AutoSize = true;
+            this.lbl_capo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_capo.Location = new System.Drawing.Point(1130, 65);
+            this.lbl_capo.Name = "lbl_capo";
+            this.lbl_capo.Size = new System.Drawing.Size(58, 18);
+            this.lbl_capo.TabIndex = 3;
+            this.lbl_capo.Text = "Arbitro";
+            // 
+            // pic_g2
+            // 
+            this.pic_g2.Location = new System.Drawing.Point(34, 314);
+            this.pic_g2.Name = "pic_g2";
+            this.pic_g2.Size = new System.Drawing.Size(92, 90);
+            this.pic_g2.TabIndex = 2;
+            this.pic_g2.TabStop = false;
+            // 
+            // pic_g1
+            // 
+            this.pic_g1.Location = new System.Drawing.Point(34, 43);
+            this.pic_g1.Name = "pic_g1";
+            this.pic_g1.Size = new System.Drawing.Size(92, 90);
+            this.pic_g1.TabIndex = 1;
+            this.pic_g1.TabStop = false;
+            // 
             // pic_arbitro
             // 
-            this.pic_arbitro.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pic_arbitro.ErrorImage")));
+            this.pic_arbitro.ErrorImage = null;
+            this.pic_arbitro.Image = ((System.Drawing.Image)(resources.GetObject("pic_arbitro.Image")));
             this.pic_arbitro.Location = new System.Drawing.Point(1133, 86);
             this.pic_arbitro.Name = "pic_arbitro";
             this.pic_arbitro.Size = new System.Drawing.Size(202, 266);
+            this.pic_arbitro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_arbitro.TabIndex = 0;
             this.pic_arbitro.TabStop = false;
             // 
@@ -138,50 +184,6 @@ namespace Rocchi_server_123_stella
             this.btn_attiva.UseVisualStyleBackColor = false;
             this.btn_attiva.Click += new System.EventHandler(this.btn_attiva_Click);
             // 
-            // pic_g1
-            // 
-            this.pic_g1.Location = new System.Drawing.Point(34, 43);
-            this.pic_g1.Name = "pic_g1";
-            this.pic_g1.Size = new System.Drawing.Size(92, 90);
-            this.pic_g1.TabIndex = 1;
-            this.pic_g1.TabStop = false;
-            // 
-            // pic_g2
-            // 
-            this.pic_g2.Location = new System.Drawing.Point(34, 314);
-            this.pic_g2.Name = "pic_g2";
-            this.pic_g2.Size = new System.Drawing.Size(92, 90);
-            this.pic_g2.TabIndex = 2;
-            this.pic_g2.TabStop = false;
-            // 
-            // lbl_capo
-            // 
-            this.lbl_capo.AutoSize = true;
-            this.lbl_capo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_capo.Location = new System.Drawing.Point(1130, 65);
-            this.lbl_capo.Name = "lbl_capo";
-            this.lbl_capo.Size = new System.Drawing.Size(58, 18);
-            this.lbl_capo.TabIndex = 3;
-            this.lbl_capo.Text = "Arbitro";
-            // 
-            // lbl_g1
-            // 
-            this.lbl_g1.AutoSize = true;
-            this.lbl_g1.Location = new System.Drawing.Point(34, 140);
-            this.lbl_g1.Name = "lbl_g1";
-            this.lbl_g1.Size = new System.Drawing.Size(21, 13);
-            this.lbl_g1.TabIndex = 4;
-            this.lbl_g1.Text = "G1";
-            // 
-            // lbl_g2
-            // 
-            this.lbl_g2.AutoSize = true;
-            this.lbl_g2.Location = new System.Drawing.Point(34, 411);
-            this.lbl_g2.Name = "lbl_g2";
-            this.lbl_g2.Size = new System.Drawing.Size(21, 13);
-            this.lbl_g2.TabIndex = 5;
-            this.lbl_g2.Text = "G2";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,9 +202,9 @@ namespace Rocchi_server_123_stella
             this.panel_titolo.PerformLayout();
             this.panel_campo.ResumeLayout(false);
             this.panel_campo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_arbitro)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_g1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_g2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_g1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_arbitro)).EndInit();
             this.ResumeLayout(false);
 
         }
