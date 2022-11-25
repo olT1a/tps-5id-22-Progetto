@@ -45,6 +45,7 @@ namespace Rocchi_server_123_stella
             this.tmr_controllo = new System.Windows.Forms.Timer(this.components);
             this.btn_attiva = new System.Windows.Forms.Button();
             this.tmr_durataMovimento = new System.Windows.Forms.Timer(this.components);
+            this.list_errori = new System.Windows.Forms.ListBox();
             this.panel_titolo.SuspendLayout();
             this.panel_campo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_g2)).BeginInit();
@@ -60,7 +61,7 @@ namespace Rocchi_server_123_stella
             this.panel_titolo.BackColor = System.Drawing.SystemColors.Info;
             this.panel_titolo.Controls.Add(this.lbl_titolo);
             this.panel_titolo.Controls.Add(this.lbl_tipo);
-            this.panel_titolo.Location = new System.Drawing.Point(13, 13);
+            this.panel_titolo.Location = new System.Drawing.Point(7, 13);
             this.panel_titolo.Name = "panel_titolo";
             this.panel_titolo.Size = new System.Drawing.Size(1376, 56);
             this.panel_titolo.TabIndex = 0;
@@ -89,7 +90,7 @@ namespace Rocchi_server_123_stella
             // 
             this.btn_fermi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(27)))), ((int)(((byte)(118)))));
             this.btn_fermi.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_fermi.Location = new System.Drawing.Point(1241, 75);
+            this.btn_fermi.Location = new System.Drawing.Point(1235, 75);
             this.btn_fermi.Name = "btn_fermi";
             this.btn_fermi.Size = new System.Drawing.Size(148, 73);
             this.btn_fermi.TabIndex = 1;
@@ -106,9 +107,9 @@ namespace Rocchi_server_123_stella
             this.panel_campo.Controls.Add(this.pic_g2);
             this.panel_campo.Controls.Add(this.pic_g1);
             this.panel_campo.Controls.Add(this.pic_arbitro);
-            this.panel_campo.Location = new System.Drawing.Point(13, 154);
+            this.panel_campo.Location = new System.Drawing.Point(7, 154);
             this.panel_campo.Name = "panel_campo";
-            this.panel_campo.Size = new System.Drawing.Size(1370, 500);
+            this.panel_campo.Size = new System.Drawing.Size(1376, 500);
             this.panel_campo.TabIndex = 2;
             // 
             // lbl_g2
@@ -176,13 +177,21 @@ namespace Rocchi_server_123_stella
             // 
             this.btn_attiva.BackColor = System.Drawing.Color.Yellow;
             this.btn_attiva.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_attiva.Location = new System.Drawing.Point(13, 75);
+            this.btn_attiva.Location = new System.Drawing.Point(7, 75);
             this.btn_attiva.Name = "btn_attiva";
             this.btn_attiva.Size = new System.Drawing.Size(148, 73);
             this.btn_attiva.TabIndex = 3;
             this.btn_attiva.Text = "ATTIVA";
             this.btn_attiva.UseVisualStyleBackColor = false;
             this.btn_attiva.Click += new System.EventHandler(this.btn_attiva_Click);
+            // 
+            // list_errori
+            // 
+            this.list_errori.FormattingEnabled = true;
+            this.list_errori.Location = new System.Drawing.Point(176, 75);
+            this.list_errori.Name = "list_errori";
+            this.list_errori.Size = new System.Drawing.Size(1036, 69);
+            this.list_errori.TabIndex = 4;
             // 
             // Form1
             // 
@@ -191,12 +200,13 @@ namespace Rocchi_server_123_stella
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
             this.ClientSize = new System.Drawing.Size(1401, 695);
+            this.Controls.Add(this.list_errori);
             this.Controls.Add(this.btn_attiva);
             this.Controls.Add(this.panel_campo);
             this.Controls.Add(this.btn_fermi);
             this.Controls.Add(this.panel_titolo);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "1,2,3 Stella server";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel_titolo.ResumeLayout(false);
             this.panel_titolo.PerformLayout();
@@ -225,6 +235,7 @@ namespace Rocchi_server_123_stella
         private System.Windows.Forms.Label lbl_capo;
         private System.Windows.Forms.Label lbl_g2;
         private System.Windows.Forms.Label lbl_g1;
+        private System.Windows.Forms.ListBox list_errori;
     }
 }
 

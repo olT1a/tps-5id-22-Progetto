@@ -296,7 +296,7 @@ namespace Rocchi_client_123_stella
             this.Controls.Add(this.btn_connetti);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "1,2,3 Stella client";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pnl_pulsantiera.ResumeLayout(false);
             this.ResumeLayout(false);

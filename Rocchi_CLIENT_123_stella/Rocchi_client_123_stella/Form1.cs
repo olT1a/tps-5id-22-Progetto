@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace Rocchi_client_123_stella
 {
     public partial class Form1 : Form
     {
         Giocatore p = new Giocatore();
-        int data2;      //data
-        string data1;
+        int data_movimento;      //data
+        string data_nickname;
         public Form1()
         {
             InitializeComponent();
@@ -66,8 +67,8 @@ namespace Rocchi_client_123_stella
             {
                 p.setNickname(txt_nick.Text);
                 lbl_nickname.Text = p.getNickname().ToString();
-                data1 = p.getNickname() + "$";
-                MessageBox.Show(data1);
+                data_nickname = p.getNickname() + "$";
+                MessageBox.Show(data_nickname);
                 pnl_pulsantiera.Visible = true;
             }
 
@@ -75,61 +76,61 @@ namespace Rocchi_client_123_stella
 
         private void btn_1t_Click(object sender, EventArgs e)
         {
-            data2 = 1;
+            data_movimento = 1;
             //si muove per 1 secondo
         }
 
         private void btn_2t_Click(object sender, EventArgs e)
         {
-            data2 = 2;
+            data_movimento = 2;
             //si muove per 2 secondi
         }
 
         private void btn_3t_Click(object sender, EventArgs e)
         {
-            data2 = 3;
+            data_movimento = 3;
             //si muove per 3 secondi
         }
 
         private void btn_4t_Click(object sender, EventArgs e)
         {
-            data2 = 4;
+            data_movimento = 4;
             //si muove per 4 secondi
         }
 
         private void btn_5t_Click(object sender, EventArgs e)
         {
-            data2 = 5;
+            data_movimento = 5;
             //si muove per 5 secondi
         }
 
         private void btn_6t_Click(object sender, EventArgs e)
         {
-            data2 = 6;
+            data_movimento = 6;
             //si muove per 6 secondi
         }
 
         private void btn_7s_Click(object sender, EventArgs e)
         {
-            data2 = 7;
+            data_movimento = 7;
             //si muove per 7 secondi
         }
 
         private void btn_8s_Click(object sender, EventArgs e)
         {
-            data2 = 8;
+            data_movimento = 8;
             //si muove per 8 secondi
         }
 
         private void btn_9t_Click(object sender, EventArgs e)
         {
-            data2 = 9;
+            data_movimento = 9;
             //si muove per 9 secondi
         }
 
         private void btn_10t_Click(object sender, EventArgs e)
         {
-            data2 = 10;
+            data_movimento = 10;
             //si muove per 10 secondi
         }
 
@@ -137,8 +138,9 @@ namespace Rocchi_client_123_stella
         {
             byte[] bytes = new byte[1024];
             int count = 0;
-            string d1 = data1;
+            string d1 = data_nickname;
             //string d2 = data2;
+            MessageBox.Show(d1);
             try
             {
                 //string data = "";
@@ -150,34 +152,30 @@ namespace Rocchi_client_123_stella
                 // Create a TCP/IP  socket.  
                 Socket sender = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-                Random stringa_casuale = new Random();
-                string stringa_da_inviare = "";
-
                 // Connect the socket to the remote endpoint. Catch any errors.  
                 try
                 {
                     sender.Connect(remoteEP);
 
                     list_errori.Items.Add("Socket connected to {0}" + sender.RemoteEndPoint.ToString());
-                    while (data1 != "Quit$")
+                    while (d1 != "quit$")
                     {
-                        stringa_da_inviare = "Messaggio di prova$";
-                        if (stringa_casuale.Next(0, 10) > 8 && count > 15)
-                            stringa_da_inviare = "Quit$";
-                        byte[] msg = Encoding.ASCII.GetBytes(stringa_da_inviare);              //("This is a test<EOF>");
-
+                        byte[] msg = Encoding.ASCII.GetBytes(d1);              //("This is a test<EOF>");
+                        
                         // Send the data through the socket.  
                         int bytesSent = sender.Send(msg);
-                        data1 = "";
+                        d1 = "";
                         // Receive the response from the remote device.  
-                        while (data1.IndexOf("$") == -1)
+                        while (d1.IndexOf("$") == -1)
                         {
                             int bytesRec = sender.Receive(bytes);
-                            data1 += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                            d1 += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                         }
-                        list_errori.Items.Add("Messaggio ricevuto: " + data1);
+                        list_errori.Items.Add("Messaggio ricevuto: " + d1);
                         System.Threading.Thread.Sleep(1000);
                         count++;
+                        d1 = "quit$";
+                        MessageBox.Show(count.ToString());
                     }
                     // Release the socket.
                     sender.Shutdown(SocketShutdown.Both);
