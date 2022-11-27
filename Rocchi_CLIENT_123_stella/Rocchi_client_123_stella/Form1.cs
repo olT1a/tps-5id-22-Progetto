@@ -53,8 +53,14 @@ namespace Rocchi_client_123_stella
             //MessageBox.Show(val.ToString());
             //tmr_durataMovimento.Interval = val;
             list_errori.Visible = true;
+            pnl_pulsantiera.Visible = true;
+            txt_nick.Visible = false;
+            btn_conferma.Visible = false;
+            lbl_nickname.Visible = false;
+            lbl_nick.Visible = false;
             startClient();
-           
+
+
         }
 
         private void btn_conferma_Click(object sender, EventArgs e)
@@ -66,10 +72,10 @@ namespace Rocchi_client_123_stella
             else
             {
                 p.setNickname(txt_nick.Text);
-                lbl_nickname.Text = p.getNickname().ToString();
+                //lbl_nickname.Text = p.getNickname().ToString();
+                lbl_tipo.Text = p.getNickname().ToString();
                 data_nickname = p.getNickname() + "$";
                 MessageBox.Show(data_nickname);
-                pnl_pulsantiera.Visible = true;
             }
 
         }
@@ -139,13 +145,10 @@ namespace Rocchi_client_123_stella
             byte[] bytes = new byte[1024];
             int count = 0;
             string d1 = data_nickname;
-            //string d2 = data2;
+            //int d2 = data_movimento;
             MessageBox.Show(d1);
             try
             {
-                //string data = "";
-                // Establish the remote endpoint for the socket.  
-                // This example uses port 11000 on the local computer.  
                 IPAddress ipAddress = System.Net.IPAddress.Parse("127.0.0.1");
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, 5000);
 
@@ -158,25 +161,18 @@ namespace Rocchi_client_123_stella
                     sender.Connect(remoteEP);
 
                     list_errori.Items.Add("Socket connected to {0}" + sender.RemoteEndPoint.ToString());
-                    while (d1 != "quit$")
+                    MessageBox.Show("Socket connected to {0}" + sender.RemoteEndPoint.ToString());
+                    byte[] msg = Encoding.ASCII.GetBytes(d1);              //("This is a test<EOF>");            
+                    // Send the data through the socket.  
+                    int bytesSent = sender.Send(msg);
+                    // Receive the response from the remote device.  
+                    while (d1.IndexOf("$") == -1)
                     {
-                        byte[] msg = Encoding.ASCII.GetBytes(d1);              //("This is a test<EOF>");
-                        
-                        // Send the data through the socket.  
-                        int bytesSent = sender.Send(msg);
-                        d1 = "";
-                        // Receive the response from the remote device.  
-                        while (d1.IndexOf("$") == -1)
-                        {
-                            int bytesRec = sender.Receive(bytes);
-                            d1 += Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                        }
-                        list_errori.Items.Add("Messaggio ricevuto: " + d1);
-                        System.Threading.Thread.Sleep(1000);
-                        count++;
-                        d1 = "quit$";
-                        MessageBox.Show(count.ToString());
+                        int bytesRec = sender.Receive(bytes);
+                        d1 += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                     }
+                    list_errori.Items.Add("Messaggio ricevuto: " + d1);
+                    System.Threading.Thread.Sleep(1000);                    
                     // Release the socket.
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();
@@ -201,6 +197,7 @@ namespace Rocchi_client_123_stella
                 list_errori.Items.Add(e.ToString());
             }
         }
+
     }
 
 }

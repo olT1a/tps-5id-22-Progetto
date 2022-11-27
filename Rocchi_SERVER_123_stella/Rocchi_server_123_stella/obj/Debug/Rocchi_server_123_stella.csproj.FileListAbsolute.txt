@@ -8,3 +8,13 @@ C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocch
 C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\obj\Debug\Rocchi_server_123_stella.csproj.CoreCompileInputs.cache
 C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\obj\Debug\Rocchi_server_123_stella.exe
 C:\Users\rocchi.18363\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\obj\Debug\Rocchi_server_123_stella.pdb
+C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\bin\Debug\Rocchi_server_123_stella.exe.config
+C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\bin\Debug\Rocchi_server_123_stella.exe
+C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\bin\Debug\Rocchi_server_123_stella.pdb
+C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\obj\Debug\Rocchi_server_123_stella.csproj.AssemblyReference.cache
+C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\obj\Debug\Rocchi_server_123_stella.Form1.resources
+C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\obj\Debug\Rocchi_server_123_stella.Properties.Resources.resources
+C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\obj\Debug\Rocchi_server_123_stella.csproj.GenerateResource.cache
+C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\obj\Debug\Rocchi_server_123_stella.csproj.CoreCompileInputs.cache
+C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\obj\Debug\Rocchi_server_123_stella.exe
+C:\Users\matti\Desktop\tps-5id-22-Progetto\Rocchi_SERVER_123_stella\Rocchi_server_123_stella\obj\Debug\Rocchi_server_123_stella.pdb

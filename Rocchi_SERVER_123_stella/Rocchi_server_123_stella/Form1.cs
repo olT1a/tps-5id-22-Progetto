@@ -48,14 +48,10 @@ namespace Rocchi_server_123_stella
         }
 
         public  void StartListening()
-        {
-            // Establish the local endpoint for the socket.  
-            // Dns.GetHostName returns the name of the   
-            // host running the application.  
+        {  
             IPAddress ipAddress = System.Net.IPAddress.Parse("127.0.0.1");
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 5000);
-
-            // Create a TCP/IP socket.  
+  
             Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
             MessageBox.Show("Timeout : {0} " +  listener.ReceiveTimeout);
@@ -76,6 +72,7 @@ namespace Rocchi_server_123_stella
                     // Program is suspended while waiting for an incoming connection.  
                     Socket handler = listener.Accept();
 
+                    MessageBox.Show("CLIENT CONNESSO");
                     ClientManager clientThread = new ClientManager(handler);
                     Thread t = new Thread(new ThreadStart(clientThread.doClient));
                     t.Start();
@@ -98,6 +95,7 @@ namespace Rocchi_server_123_stella
         Socket clientSocket;
         byte[] bytes = new Byte[1024];
         String data = "";
+        string[] utenti = new string[2];
 
         public ClientManager(Socket clientSocket)
         {
@@ -117,9 +115,8 @@ namespace Rocchi_server_123_stella
                     data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                 }
 
-                // Show the data on the console.  
-                MessageBox.Show("Messaggio ricevuto : {0} " +  data);
-                
+                MessageBox.Show("Messaggio ricevuto dal client " + data);
+                utenti.Append(data);
                 // Echo the data back to the client.  
                 byte[] msg = Encoding.ASCII.GetBytes(data);
 
@@ -130,6 +127,7 @@ namespace Rocchi_server_123_stella
             data = "";
 
         }
+
     }
 }
 
