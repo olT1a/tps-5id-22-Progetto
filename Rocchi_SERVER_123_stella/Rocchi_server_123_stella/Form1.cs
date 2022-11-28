@@ -19,6 +19,7 @@ namespace Rocchi_server_123_stella
         public Form1()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
         }
 
         private void btn_fermi_Click(object sender, EventArgs e)
@@ -73,7 +74,7 @@ namespace Rocchi_server_123_stella
                     Socket handler = listener.Accept();
 
                     MessageBox.Show("CLIENT CONNESSO");
-                    ClientManager clientThread = new ClientManager(handler);
+                    ClientManager clientThread = new ClientManager(handler, this);
                     Thread t = new Thread(new ThreadStart(clientThread.doClient));
                     t.Start();
 
@@ -95,37 +96,56 @@ namespace Rocchi_server_123_stella
         Socket clientSocket;
         byte[] bytes = new Byte[1024];
         String data = "";
-        string[] utenti = new string[2];
-
-        public ClientManager(Socket clientSocket)
+        List<string> utenti = new List<string>();
+        Form1 f1;
+        int count = 0;
+        public ClientManager(Socket clientSocket, Form1 f)
         {
             this.clientSocket = clientSocket;
+            this.f1 = f;
         }
 
         public void doClient()
         {
 
-            while (data != "Quit$")
-            {
-                // An incoming connection needs to be processed.  
+            //while (data != "Quit$")
+            //{
                 data = "";
                 while (data.IndexOf("$") == -1)
                 {
                     int bytesRec = clientSocket.Receive(bytes);
                     data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                 }
-
+                data = data.Substring(0, data.Length - 1);
                 MessageBox.Show("Messaggio ricevuto dal client " + data);
-                utenti.Append(data);
-                // Echo the data back to the client.  
+                utenti.Add(data);
+                count++;
+                MessageBox.Show("totali" + count.ToString());
+                
                 byte[] msg = Encoding.ASCII.GetBytes(data);
-
                 clientSocket.Send(msg);
-            }
-            clientSocket.Shutdown(SocketShutdown.Both);
-            clientSocket.Close();
-            data = "";
+                //}
+                clientSocket.Shutdown(SocketShutdown.Both);
+                clientSocket.Close();
+                data = "";
+                set_player(utenti, count);
 
+
+        }
+        public void set_player(List<string> p, int count)
+        {
+            switch (count)
+            {
+                case 0:
+                    break;
+                case 1:
+                    f1.lbl_g1.Text = p[0];
+                    break;
+                case 2:
+                    f1.lbl_g1.Text = p[0];
+                    f1.lbl_g2.Text = p[1];
+                    break;
+            }
         }
 
     }
