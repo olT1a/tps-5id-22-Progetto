@@ -36,6 +36,8 @@ namespace Rocchi_server_123_stella
             this.lbl_tipo = new System.Windows.Forms.Label();
             this.btn_fermi = new System.Windows.Forms.Button();
             this.panel_campo = new System.Windows.Forms.Panel();
+            this.lbl_mov_G2 = new System.Windows.Forms.Label();
+            this.lbl_mov_G1 = new System.Windows.Forms.Label();
             this.lbl_g2 = new System.Windows.Forms.Label();
             this.lbl_g1 = new System.Windows.Forms.Label();
             this.lbl_capo = new System.Windows.Forms.Label();
@@ -62,7 +64,7 @@ namespace Rocchi_server_123_stella
             this.panel_titolo.Controls.Add(this.lbl_titolo);
             this.panel_titolo.Controls.Add(this.lbl_tipo);
             this.panel_titolo.Location = new System.Drawing.Point(9, 16);
-            this.panel_titolo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_titolo.Margin = new System.Windows.Forms.Padding(4);
             this.panel_titolo.Name = "panel_titolo";
             this.panel_titolo.Size = new System.Drawing.Size(1835, 69);
             this.panel_titolo.TabIndex = 0;
@@ -94,7 +96,7 @@ namespace Rocchi_server_123_stella
             this.btn_fermi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(27)))), ((int)(((byte)(118)))));
             this.btn_fermi.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_fermi.Location = new System.Drawing.Point(1647, 92);
-            this.btn_fermi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_fermi.Margin = new System.Windows.Forms.Padding(4);
             this.btn_fermi.Name = "btn_fermi";
             this.btn_fermi.Size = new System.Drawing.Size(197, 90);
             this.btn_fermi.TabIndex = 1;
@@ -105,6 +107,8 @@ namespace Rocchi_server_123_stella
             // panel_campo
             // 
             this.panel_campo.BackColor = System.Drawing.Color.Cornsilk;
+            this.panel_campo.Controls.Add(this.lbl_mov_G2);
+            this.panel_campo.Controls.Add(this.lbl_mov_G1);
             this.panel_campo.Controls.Add(this.lbl_g2);
             this.panel_campo.Controls.Add(this.lbl_g1);
             this.panel_campo.Controls.Add(this.lbl_capo);
@@ -112,10 +116,26 @@ namespace Rocchi_server_123_stella
             this.panel_campo.Controls.Add(this.pic_g1);
             this.panel_campo.Controls.Add(this.pic_arbitro);
             this.panel_campo.Location = new System.Drawing.Point(9, 190);
-            this.panel_campo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_campo.Margin = new System.Windows.Forms.Padding(4);
             this.panel_campo.Name = "panel_campo";
             this.panel_campo.Size = new System.Drawing.Size(1835, 615);
             this.panel_campo.TabIndex = 2;
+            // 
+            // lbl_mov_G2
+            // 
+            this.lbl_mov_G2.AutoSize = true;
+            this.lbl_mov_G2.Location = new System.Drawing.Point(102, 512);
+            this.lbl_mov_G2.Name = "lbl_mov_G2";
+            this.lbl_mov_G2.Size = new System.Drawing.Size(0, 17);
+            this.lbl_mov_G2.TabIndex = 7;
+            // 
+            // lbl_mov_G1
+            // 
+            this.lbl_mov_G1.AutoSize = true;
+            this.lbl_mov_G1.Location = new System.Drawing.Point(102, 172);
+            this.lbl_mov_G1.Name = "lbl_mov_G1";
+            this.lbl_mov_G1.Size = new System.Drawing.Size(0, 17);
+            this.lbl_mov_G1.TabIndex = 6;
             // 
             // lbl_g2
             // 
@@ -151,7 +171,7 @@ namespace Rocchi_server_123_stella
             // pic_g2
             // 
             this.pic_g2.Location = new System.Drawing.Point(45, 386);
-            this.pic_g2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pic_g2.Margin = new System.Windows.Forms.Padding(4);
             this.pic_g2.Name = "pic_g2";
             this.pic_g2.Size = new System.Drawing.Size(123, 111);
             this.pic_g2.TabIndex = 2;
@@ -160,7 +180,7 @@ namespace Rocchi_server_123_stella
             // pic_g1
             // 
             this.pic_g1.Location = new System.Drawing.Point(45, 53);
-            this.pic_g1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pic_g1.Margin = new System.Windows.Forms.Padding(4);
             this.pic_g1.Name = "pic_g1";
             this.pic_g1.Size = new System.Drawing.Size(123, 111);
             this.pic_g1.TabIndex = 1;
@@ -171,7 +191,7 @@ namespace Rocchi_server_123_stella
             this.pic_arbitro.ErrorImage = null;
             this.pic_arbitro.Image = ((System.Drawing.Image)(resources.GetObject("pic_arbitro.Image")));
             this.pic_arbitro.Location = new System.Drawing.Point(1511, 106);
-            this.pic_arbitro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pic_arbitro.Margin = new System.Windows.Forms.Padding(4);
             this.pic_arbitro.Name = "pic_arbitro";
             this.pic_arbitro.Size = new System.Drawing.Size(269, 327);
             this.pic_arbitro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -189,7 +209,7 @@ namespace Rocchi_server_123_stella
             this.btn_attiva.BackColor = System.Drawing.Color.Yellow;
             this.btn_attiva.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_attiva.Location = new System.Drawing.Point(9, 92);
-            this.btn_attiva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_attiva.Margin = new System.Windows.Forms.Padding(4);
             this.btn_attiva.Name = "btn_attiva";
             this.btn_attiva.Size = new System.Drawing.Size(197, 90);
             this.btn_attiva.TabIndex = 3;
@@ -202,7 +222,7 @@ namespace Rocchi_server_123_stella
             this.list_errori.FormattingEnabled = true;
             this.list_errori.ItemHeight = 16;
             this.list_errori.Location = new System.Drawing.Point(235, 92);
-            this.list_errori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.list_errori.Margin = new System.Windows.Forms.Padding(4);
             this.list_errori.Name = "list_errori";
             this.list_errori.Size = new System.Drawing.Size(1380, 84);
             this.list_errori.TabIndex = 4;
@@ -219,7 +239,7 @@ namespace Rocchi_server_123_stella
             this.Controls.Add(this.panel_campo);
             this.Controls.Add(this.btn_fermi);
             this.Controls.Add(this.panel_titolo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "1,2,3 Stella server";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -251,6 +271,8 @@ namespace Rocchi_server_123_stella
         public System.Windows.Forms.PictureBox pic_g1;
         public System.Windows.Forms.Label lbl_g2;
         public System.Windows.Forms.Label lbl_g1;
+        public System.Windows.Forms.Label lbl_mov_G2;
+        public System.Windows.Forms.Label lbl_mov_G1;
     }
 }
 

@@ -95,10 +95,12 @@ namespace Rocchi_server_123_stella
 
         Socket clientSocket;
         byte[] bytes = new Byte[1024];
-        String data = "";
+        string data = "";
         List<string> utenti = new List<string>();
         Form1 f1;
         int count = 0;
+        int movimento;
+
         public ClientManager(Socket clientSocket, Form1 f)
         {
             this.clientSocket = clientSocket;
@@ -129,6 +131,7 @@ namespace Rocchi_server_123_stella
                 clientSocket.Close();
                 data = "";
                 set_player(utenti, count);
+                move();
 
 
         }
@@ -148,6 +151,22 @@ namespace Rocchi_server_123_stella
             }
         }
 
+        public void move()
+        {
+            while (data.IndexOf("$") == -1)
+            {
+                int bytesRec = clientSocket.Receive(bytes);
+                data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+            }
+            data = data.Substring(0, data.Length - 1);
+            movimento = int.Parse(data);
+            for(int i = 0; i < movimento; i++)
+            {
+                f1.lbl_mov_G1.Text += '-';
+                var pause = Task.Delay(1000);
+                pause.Wait();
+            }
+        }
     }
 }
 

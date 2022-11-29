@@ -147,8 +147,9 @@ namespace Rocchi_client_123_stella
         {
             byte[] bytes = new byte[1024];
             string d1 = data_nickname;
-            //int d2 = data_movimento;
-            MessageBox.Show(d1);
+            string d2 = data_movimento.ToString() + "$";
+            MessageBox.Show("nickname " + d1);
+            MessageBox.Show("Movimento " + d2);
             try
             {
                 IPAddress ipAddress = System.Net.IPAddress.Parse("127.0.0.1");
@@ -165,6 +166,7 @@ namespace Rocchi_client_123_stella
                             send_nick(sender, remoteEP, d1);
                             nick_inviato = true;
                         }
+                        send_movement(sender, remoteEP, d2);
 
                     }
                     
@@ -188,7 +190,7 @@ namespace Rocchi_client_123_stella
                 list_errori.Items.Add(e.ToString());
             }
         }
-        private void send_nick(Socket sender, IPEndPoint remoteEP, string d1)
+        private void send_nick(Socket sender, IPEndPoint remoteEP, string d)
         {
             byte[] bytes = new byte[1024];
             sender.Connect(remoteEP);
@@ -197,15 +199,39 @@ namespace Rocchi_client_123_stella
             MessageBox.Show("Socket connected to {0}" + sender.RemoteEndPoint.ToString());
             //while (d1 != "Quit$")
             //{
-            byte[] msg = Encoding.ASCII.GetBytes(d1);              
+            byte[] msg = Encoding.ASCII.GetBytes(d);              
             int bytesSent = sender.Send(msg);
             // Receive the response from the remote device.  
-            while (d1.IndexOf("$") == -1)
+            while (d.IndexOf("$") == -1)
             {
                 int bytesRec = sender.Receive(bytes);
-                d1 += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                d += Encoding.ASCII.GetString(bytes, 0, bytesRec);
             }
-            list_errori.Items.Add("Messaggio ricevuto: " + d1);
+            list_errori.Items.Add("Messaggio ricevuto: " + d);
+            System.Threading.Thread.Sleep(1000);
+            sender.Shutdown(SocketShutdown.Both);
+            sender.Close();
+        }
+
+        private void send_movement(Socket sender, IPEndPoint remoteEP, string d)
+        {
+            byte[] bytes = new byte[1024];
+            sender.Connect(remoteEP);
+            string data;
+            data = d.ToString();
+            list_errori.Items.Add("Socket connected to {0}" + sender.RemoteEndPoint.ToString());
+            MessageBox.Show("Socket connected to {0}" + sender.RemoteEndPoint.ToString());
+            //while (d1 != "Quit$")
+            //{
+            byte[] msg = Encoding.ASCII.GetBytes(data);
+            int bytesSent = sender.Send(msg);
+            // Receive the response from the remote device.  
+            while (data.IndexOf("$") == -1)
+            {
+                int bytesRec = sender.Receive(bytes);
+                data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+            }
+            list_errori.Items.Add("Messaggio ricevuto: " + data);
             System.Threading.Thread.Sleep(1000);
             sender.Shutdown(SocketShutdown.Both);
             sender.Close();
