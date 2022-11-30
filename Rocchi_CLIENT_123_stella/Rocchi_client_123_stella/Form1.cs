@@ -166,7 +166,10 @@ namespace Rocchi_client_123_stella
                             send_nick(sender, remoteEP, d1);
                             nick_inviato = true;
                         }
-                        send_movement(sender, remoteEP, d2);
+                        if (nick_inviato == true)
+                        {
+                            send_movement(sender, remoteEP, d2);
+                        }
 
                     }
                     

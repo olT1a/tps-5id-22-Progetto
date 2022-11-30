@@ -45,7 +45,9 @@ namespace Rocchi_server_123_stella
         {
             panel_campo.Visible = true;
             btn_fermi.Visible = true;
-            StartListening();
+            Thread t = new Thread(new ThreadStart(StartListening));
+            //StartListening();
+            t.Start();
         }
 
         public  void StartListening()
@@ -100,7 +102,6 @@ namespace Rocchi_server_123_stella
         Form1 f1;
         int count = 0;
         int movimento;
-
         public ClientManager(Socket clientSocket, Form1 f)
         {
             this.clientSocket = clientSocket;
@@ -112,6 +113,7 @@ namespace Rocchi_server_123_stella
 
             //while (data != "Quit$")
             //{
+            //while (count != 2) {
                 data = "";
                 while (data.IndexOf("$") == -1)
                 {
@@ -122,16 +124,17 @@ namespace Rocchi_server_123_stella
                 MessageBox.Show("Messaggio ricevuto dal client " + data);
                 utenti.Add(data);
                 count++;
-                MessageBox.Show("totali" + count.ToString());
-                
+                //MessageBox.Show("totali" + count.ToString());
+
                 byte[] msg = Encoding.ASCII.GetBytes(data);
                 clientSocket.Send(msg);
                 //}
                 clientSocket.Shutdown(SocketShutdown.Both);
                 clientSocket.Close();
                 data = "";
+            //}
                 set_player(utenti, count);
-                move();
+                //move();
 
 
         }
@@ -151,7 +154,7 @@ namespace Rocchi_server_123_stella
             }
         }
 
-        public void move()
+        /*public void move()
         {
             while (data.IndexOf("$") == -1)
             {
@@ -166,7 +169,7 @@ namespace Rocchi_server_123_stella
                 var pause = Task.Delay(1000);
                 pause.Wait();
             }
-        }
+        }*/
     }
 }
 
