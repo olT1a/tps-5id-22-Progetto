@@ -132,7 +132,7 @@ namespace Rocchi_server_123_stella
             // lbl_mov_G1
             // 
             this.lbl_mov_G1.AutoSize = true;
-            this.lbl_mov_G1.Location = new System.Drawing.Point(102, 172);
+            this.lbl_mov_G1.Location = new System.Drawing.Point(102, 168);
             this.lbl_mov_G1.Name = "lbl_mov_G1";
             this.lbl_mov_G1.Size = new System.Drawing.Size(0, 17);
             this.lbl_mov_G1.TabIndex = 6;
@@ -150,7 +150,7 @@ namespace Rocchi_server_123_stella
             // lbl_g1
             // 
             this.lbl_g1.AutoSize = true;
-            this.lbl_g1.Location = new System.Drawing.Point(45, 172);
+            this.lbl_g1.Location = new System.Drawing.Point(45, 168);
             this.lbl_g1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_g1.Name = "lbl_g1";
             this.lbl_g1.Size = new System.Drawing.Size(27, 17);

@@ -16,6 +16,7 @@ namespace Rocchi_server_123_stella
     public partial class Form1 : Form
     {
         public static string data = null;
+        int client_connessi = 0;
         public Form1()
         {
             InitializeComponent();
@@ -46,7 +47,6 @@ namespace Rocchi_server_123_stella
             panel_campo.Visible = true;
             btn_fermi.Visible = true;
             Thread t = new Thread(new ThreadStart(StartListening));
-            //StartListening();
             t.Start();
         }
 
@@ -69,14 +69,11 @@ namespace Rocchi_server_123_stella
                 // Start listening for connections.  
                 while (true)
                 {
-
-                    MessageBox.Show("Waiting for a connection...");
-
                     // Program is suspended while waiting for an incoming connection.  
                     Socket handler = listener.Accept();
-
-                    MessageBox.Show("CLIENT CONNESSO");
-                    ClientManager clientThread = new ClientManager(handler, this);
+                    client_connessi++;
+                    MessageBox.Show("CLIENT CONNESSI: " + client_connessi.ToString());
+                    ClientManager clientThread = new ClientManager(handler, this, client_connessi);
                     Thread t = new Thread(new ThreadStart(clientThread.doClient));
                     t.Start();
 
@@ -94,25 +91,23 @@ namespace Rocchi_server_123_stella
     }
     public class ClientManager
     {
-
         Socket clientSocket;
         byte[] bytes = new Byte[1024];
         string data = "";
         List<string> utenti = new List<string>();
         Form1 f1;
-        int count = 0;
         int movimento;
-        public ClientManager(Socket clientSocket, Form1 f)
+        int connected_client = 0;
+     
+        public ClientManager(Socket clientSocket, Form1 f, int c)
         {
             this.clientSocket = clientSocket;
             this.f1 = f;
+            this.connected_client = c;
         }
 
         public void doClient()
         {
-
-            //while (data != "Quit$")
-            //{
             //while (count != 2) {
                 data = "";
                 while (data.IndexOf("$") == -1)
@@ -121,20 +116,17 @@ namespace Rocchi_server_123_stella
                     data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                 }
                 data = data.Substring(0, data.Length - 1);
-                MessageBox.Show("Messaggio ricevuto dal client " + data);
                 utenti.Add(data);
-                count++;
-                //MessageBox.Show("totali" + count.ToString());
-
                 byte[] msg = Encoding.ASCII.GetBytes(data);
                 clientSocket.Send(msg);
-                //}
-                clientSocket.Shutdown(SocketShutdown.Both);
-                clientSocket.Close();
-                data = "";
             //}
-                set_player(utenti, count);
-                //move();
+            /*clientSocket.Shutdown(SocketShutdown.Both);
+            clientSocket.Close();*/
+            data = "";
+            set_player(utenti, connected_client);
+            //move();
+            
+
 
 
         }
@@ -145,31 +137,42 @@ namespace Rocchi_server_123_stella
                 case 0:
                     break;
                 case 1:
-                    f1.lbl_g1.Text = p[0];
+                    //if (f1.lbl_g1.Text == "G1")
+                    //{
+                        f1.lbl_g1.Text = p[0];
+                   // }
+                    //else
+                    //{
+                    //    f1.lbl_g2.Text = p[0];
+                    //}
                     break;
                 case 2:
-                    f1.lbl_g1.Text = p[0];
-                    f1.lbl_g2.Text = p[1];
+                    //if (f1.lbl_g1.Text != "G!")
+                    //{
+                        f1.lbl_g1.Text = p[0];
+                        f1.lbl_g2.Text = p[1];
+                   // }
                     break;
             }
         }
 
-        /*public void move()
+        public void move()
         {
+            int bytesRec = 0;
             while (data.IndexOf("$") == -1)
             {
-                int bytesRec = clientSocket.Receive(bytes);
+                bytesRec = clientSocket.Receive(bytes);
                 data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
             }
             data = data.Substring(0, data.Length - 1);
             movimento = int.Parse(data);
             for(int i = 0; i < movimento; i++)
             {
-                f1.lbl_mov_G1.Text += '-';
+                f1.lbl_mov_G1.Text += "-";
                 var pause = Task.Delay(1000);
                 pause.Wait();
             }
-        }*/
+        }
     }
 }
 
