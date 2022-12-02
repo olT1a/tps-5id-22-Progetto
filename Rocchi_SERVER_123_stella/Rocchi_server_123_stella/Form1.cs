@@ -18,7 +18,7 @@ namespace Rocchi_server_123_stella
         public static string data = null;
         int client_connessi = 0;
         public List<Giocatore> player_list = new List<Giocatore>();
-        public bool premuto = false;
+        public bool controllo = false;
         public Form1()
         {
             InitializeComponent();
@@ -29,6 +29,7 @@ namespace Rocchi_server_123_stella
         {
             pic_arbitro.Image = Image.FromFile(@".\\arbitro2.jpg");
             tmr_controllo.Start();
+            controllo = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace Rocchi_server_123_stella
         {
             pic_arbitro.Image = Image.FromFile(@".\\arbitro1.jpg");
             tmr_controllo.Stop();
+            controllo = false;
         }
 
         private void btn_attiva_Click(object sender, EventArgs e)
@@ -69,8 +71,7 @@ namespace Rocchi_server_123_stella
                 {
                     Socket handler = listener.Accept();
                     client_connessi++;
-                    //MessageBox.Show("CLIENT CONNESSI: " + client_connessi.ToString());
-                    ClientManager clientThread = new ClientManager(handler, this, client_connessi, player_list);
+                    ClientManager clientThread = new ClientManager(handler, this, client_connessi, player_list, controllo);
                     Thread t = new Thread(new ThreadStart(clientThread.doClient));
                     t.Start();
                 }
@@ -89,19 +90,20 @@ namespace Rocchi_server_123_stella
         byte[] bytes = new Byte[1024];
         string data = "";
         Form1 f1;
-        int movimento;
         int connected_client = 0;
         bool nick_settati = false;
         List<Giocatore> gio;
         Giocatore g = new Giocatore();
-
-        public ClientManager(Socket clientSocket, Form1 f, int c, List<Giocatore> lista)
+        bool stato = false;
+        bool fermo = false;
+        bool partita_conclusa;
+        public ClientManager(Socket clientSocket, Form1 f, int c, List<Giocatore> lista, bool s)
         {
             this.clientSocket = clientSocket;
             this.f1 = f;
             this.connected_client = c;
             this.gio = lista;
-
+            this.stato = s;
         }
 
         public void doClient()
@@ -122,10 +124,19 @@ namespace Rocchi_server_123_stella
                 }
                 if (nick_settati == true)
                 {
-                    data = recive_data();
-                    move(gio);
-                    data = "";
-                    //end_game();
+                    partita_conclusa = end_game();
+                    if(partita_conclusa == false)
+                    {
+                        data = recive_data();
+                        move(gio);
+                        data = "";
+                    }
+                    else
+                    {
+                        clientSocket.Shutdown(SocketShutdown.Both);
+                        clientSocket.Close();
+                    }
+
                 }
             }
         }
@@ -151,61 +162,26 @@ namespace Rocchi_server_123_stella
             if(f1.lbl_g1.Text==g.get_nick())
             {
                 g.set_movement(data);
-                MessageBox.Show("movimento da eseguire: " + g.get_movement());
-                for (int i = 0; i < Convert.ToInt32(p[0].get_movement()); i++)
+                for (int i = 0; i < Convert.ToInt32(g.get_movement()); i++)
                 {
+                    fermo = false;
                     f1.lbl_mov_G1.Text += "-";
-                    var pause = Task.Delay(1000);
+                    var pause = Task.Delay(2000);
                     pause.Wait();
+                    fermo = true;
                 }
             } else
             {
                 g.set_movement(data);
                 for (int i = 0; i < Convert.ToInt32(g.get_movement()); i++)
                 {
+                    fermo = false;
                     f1.lbl_mov_G2.Text += "-";
-                    var pause = Task.Delay(1000);
+                    var pause = Task.Delay(2000);
                     pause.Wait();
+                    fermo = true;
                 }
             }
-
-            /*switch (p.Count) {
-                case 0:
-                    break;
-                case 1:
-                    {
-                        p[0].set_movement(data);
-                        MessageBox.Show("movimento da eseguire: " + p[0].get_movement());
-                        for (int i = 0; i < Convert.ToInt32(p[0].get_movement()); i++)
-                        {
-                            f1.lbl_mov_G1.Text += "-";
-                            var pause = Task.Delay(1000);
-                            pause.Wait();
-                        }
-                    }
-                    break;
-                case 2:
-                    {
-                        p[0].set_movement(data);
-                        for (int i = 0; i < Convert.ToInt32(p[0].get_movement()); i++)
-                        {
-                            f1.lbl_mov_G1.Text += "-";
-                            var pause = Task.Delay(1000);
-                            pause.Wait();
-                        }
-                        //data = "";
-                        p[1].set_movement(data);
-                        for (int i = 0; i < Convert.ToInt32(p[1].get_movement()); i++)
-                        {
-                            f1.lbl_mov_G2.Text += "-";
-                            var pause = Task.Delay(1000);
-                            pause.Wait();
-                        }
-                        //data = "";
-                    }
-                    break;*/
-
-       // }
         }
         public string recive_data()
         {
@@ -220,10 +196,46 @@ namespace Rocchi_server_123_stella
         
         public bool end_game()
         {
-            MessageBox.Show(f1.premuto.ToString());
-            /*clientSocket.Shutdown(SocketShutdown.Both);
-            clientSocket.Close();*/
-            return true;
+            bool partita_finita = false;
+            bool eliminato = true;
+
+            if (f1.lbl_g1.Text == g.get_nick())
+            {
+                if (stato == true)      // se l'arbitro è girato
+                {
+                    if (partita_finita == false)    // se la partita non è finita
+                    {
+                        if (eliminato == false)     // se il giocatore non è stato eliminato
+                        {
+                            if (fermo == false)     // se il giocatore si sta muovendo
+                            {
+                                MessageBox.Show(g.get_nick() + " ELIMINATO");
+                                eliminato = true;
+                                partita_finita = true;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (stato == true)
+                {
+                    if (partita_finita == false)
+                    {
+                        if (eliminato == false)
+                        {
+                            if (fermo == false)
+                            {
+                                MessageBox.Show(g.get_nick() + " ELIMINATO");
+                                eliminato = true;
+                                partita_finita = true;
+                            }
+                        }
+                    }
+                }
+            }
+            return partita_finita;
         }
     }
 
