@@ -18,7 +18,7 @@ namespace Rocchi_server_123_stella
         public static string data = null;
         int client_connessi = 0;
         public List<Giocatore> player_list = new List<Giocatore>();
-
+        public bool premuto = false;
         public Form1()
         {
             InitializeComponent();
@@ -28,7 +28,6 @@ namespace Rocchi_server_123_stella
         private void btn_fermi_Click(object sender, EventArgs e)
         {
             pic_arbitro.Image = Image.FromFile(@".\\arbitro2.jpg");
-
             tmr_controllo.Start();
         }
 
@@ -94,6 +93,7 @@ namespace Rocchi_server_123_stella
         int connected_client = 0;
         bool nick_settati = false;
         List<Giocatore> gio;
+        Giocatore g = new Giocatore();
 
         public ClientManager(Socket clientSocket, Form1 f, int c, List<Giocatore> lista)
         {
@@ -106,46 +106,28 @@ namespace Rocchi_server_123_stella
 
         public void doClient()
         {
-            if (nick_settati == false)
+            while (true)
             {
-                //while (count != 2) {
-                data = "";
-                while (data.IndexOf("$") == -1)
+                if (nick_settati == false)
                 {
-                    int bytesRec = clientSocket.Receive(bytes);
-                    data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                    data = "";
+                    data = recive_data();
+                    g.set_nick(data);
+                    gio.Add(g);
+                    set_player(gio, connected_client);
+                    byte[] msg = Encoding.ASCII.GetBytes(data);
+                    clientSocket.Send(msg);
+                    nick_settati = true;
+                    data = "";
                 }
-                data = data.Substring(0, data.Length - 1);
-                Giocatore g = new Giocatore();
-
-                g.set_nick(data);
-                gio.Add(g);
-                foreach (Giocatore goi in gio)
+                if (nick_settati == true)
                 {
-                    MessageBox.Show(goi.get_nick());
+                    data = recive_data();
+                    move(gio);
+                    data = "";
+                    //end_game();
                 }
-                MessageBox.Show(gio.Count.ToString());
-
-                MessageBox.Show("valore booleano: " + nick_settati.ToString());
-                set_player(gio, connected_client);
-                byte[] msg = Encoding.ASCII.GetBytes(data);
-                clientSocket.Send(msg);
-                nick_settati = true;
-                data = "";
             }
-            if (nick_settati == true)
-            {
-                move(gio);
-                data = "";
-            }
-            
-
-            
-
-            //}
-
-
-
         }
         public void set_player(List<Giocatore> p, int count)
         {
@@ -165,26 +147,82 @@ namespace Rocchi_server_123_stella
 
         public void move(List<Giocatore> p)
         {
-            //int bytesRec = 0;
+
+            if(f1.lbl_g1.Text==g.get_nick())
+            {
+                g.set_movement(data);
+                MessageBox.Show("movimento da eseguire: " + g.get_movement());
+                for (int i = 0; i < Convert.ToInt32(p[0].get_movement()); i++)
+                {
+                    f1.lbl_mov_G1.Text += "-";
+                    var pause = Task.Delay(1000);
+                    pause.Wait();
+                }
+            } else
+            {
+                g.set_movement(data);
+                for (int i = 0; i < Convert.ToInt32(g.get_movement()); i++)
+                {
+                    f1.lbl_mov_G2.Text += "-";
+                    var pause = Task.Delay(1000);
+                    pause.Wait();
+                }
+            }
+
+            /*switch (p.Count) {
+                case 0:
+                    break;
+                case 1:
+                    {
+                        p[0].set_movement(data);
+                        MessageBox.Show("movimento da eseguire: " + p[0].get_movement());
+                        for (int i = 0; i < Convert.ToInt32(p[0].get_movement()); i++)
+                        {
+                            f1.lbl_mov_G1.Text += "-";
+                            var pause = Task.Delay(1000);
+                            pause.Wait();
+                        }
+                    }
+                    break;
+                case 2:
+                    {
+                        p[0].set_movement(data);
+                        for (int i = 0; i < Convert.ToInt32(p[0].get_movement()); i++)
+                        {
+                            f1.lbl_mov_G1.Text += "-";
+                            var pause = Task.Delay(1000);
+                            pause.Wait();
+                        }
+                        //data = "";
+                        p[1].set_movement(data);
+                        for (int i = 0; i < Convert.ToInt32(p[1].get_movement()); i++)
+                        {
+                            f1.lbl_mov_G2.Text += "-";
+                            var pause = Task.Delay(1000);
+                            pause.Wait();
+                        }
+                        //data = "";
+                    }
+                    break;*/
+
+       // }
+        }
+        public string recive_data()
+        {
             while (data.IndexOf("$") == -1)
             {
                 int bytesRec = clientSocket.Receive(bytes);
                 data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
             }
             data = data.Substring(0, data.Length - 1);
-            p[0].set_movement(data);
-            MessageBox.Show("movimento da eseguire: " + p[0].get_movement()); 
-           for (int i = 0; i < Convert.ToInt32(p[0].get_movement()); i++)
-           {
-                f1.lbl_mov_G1.Text += "-";
-                var pause = Task.Delay(1000);
-                pause.Wait();
-           }
+            return data;
         }
+        
         public bool end_game()
         {
-            clientSocket.Shutdown(SocketShutdown.Both);
-            clientSocket.Close();
+            MessageBox.Show(f1.premuto.ToString());
+            /*clientSocket.Shutdown(SocketShutdown.Both);
+            clientSocket.Close();*/
             return true;
         }
     }
